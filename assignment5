@@ -1,43 +1,109 @@
+import time
+
 def linear_search(the_list, target):
     for index, value in enumerate(the_list):
         if value == target:
             return index
     return -1
 
-# def binary_search(the_list, target):
+def binary_search(the_list, target):
+    left = 0
+    right = len(the_list) -1
+    while left <= right:
+        middle = (left + right) // 2
+        match = the_list[middle]
+
+        if target == match:
+            return middle
+        elif target < match:
+            right = middle - 1
+        else:
+            left = middle + 1
+    return -1
 
 
+def linear_measure_time(linear_search, the_list, target):
+    start_time = time.time()
+    time_result = linear_search(the_list, target)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    return time_result, elapsed_time
 
-
-
+def binary_measure_time(binary_search, the_list, target):
+    start_time = time.time()
+    time_result = binary_search(the_list, target)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    return time_result, elapsed_time
 
 the_list = list(range(1000))
-target = 123
-result  = linear_search(the_list, target)
-if result != -1:
-    print(f"Linear search: The index of {target} is: {result}")
+target = 985
+print(f"The list is {len(the_list)} and the target is {target}")
+linear_result  = linear_search(the_list, target)
+if linear_result != -1:
+    print(f"Linear search: The index of {target} is: {linear_result}")
 else:
     print(f"Linear search: The index of {target} is not in the list")
+
+binary_result = binary_search(the_list, target)
+if binary_result != -1:
+    print(f"Binary search: The index of {target} is: {binary_result}")
+else:
+    print(f"Binary search: The index of {target} is not in the list")
+
+linear_time = linear_measure_time(linear_search, the_list, target)
+print(f"The linear search happened in {linear_time[1]:.6f} seconds.")
+
+binary_time = binary_measure_time(binary_search, the_list, target)
+print(f"The binary search happened in {binary_time[1]:.6f} seconds.")
 
 
 the_list = list(range(10000))
-target = 1222
-result  = linear_search(the_list, target)
-if result != -1:
-    print(f"Linear search: The index of {target} is: {result}")
+target = 9963
+print(f"The list is {len(the_list)} and the target is {target}")
+
+linear_result  = linear_search(the_list, target)
+if linear_result != -1:
+    print(f"Linear search: The index of {target} is: {linear_result}")
 else:
     print(f"Linear search: The index of {target} is not in the list")
+
+
+binary_result = binary_search(the_list, target)
+if binary_result != -1:
+    print(f"Binary search: The index of {target} is: {binary_result}")
+else:
+    print(f"Binary search: The index of {target} is not in the list")
+
+linear_time = linear_measure_time(linear_search, the_list, target)
+print(f"The linear search happened in {linear_time[1]:.6f} seconds.")
+
+binary_time = binary_measure_time(binary_search, the_list, target)
+print(f"The binary search happened in {binary_time[1]:.6f} seconds.")
+
 
 
 
 the_list = list(range(100000))
-target = 32568
-result  = linear_search(the_list, target)
-if result != -1:
-    print(f"Linear search: The index of {target} is: {result}")
+target = 99568
+
+print(f"The list is {len(the_list)} and the target is {target}")
+
+linear_result  = linear_search(the_list, target)
+if linear_result != -1:
+    print(f"Linear search: The index of {target} is: {linear_result}")
 else:
     print(f"Linear search: The index of {target} is not in the list")
 
 
+binary_result = binary_search(the_list, target)
+if binary_result != -1:
+    print(f"Binary search: The index of {target} is: {binary_result}")
+else:
+    print(f"Binary search: The index of {target} is not in the list")
 
+linear_time = linear_measure_time(linear_search, the_list, target)
+print(f"The linear search happened in {linear_time[1]:.6f} seconds.")
 
+binary_time = binary_measure_time(binary_search, the_list, target)
+print(f"The binary search happened in {binary_time[1]:.6f} seconds.")
