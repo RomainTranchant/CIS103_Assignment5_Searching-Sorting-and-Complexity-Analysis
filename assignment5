@@ -107,3 +107,32 @@ print(f"The linear search happened in {linear_time[1]:.6f} seconds.")
 
 binary_time = binary_measure_time(binary_search, the_list, target)
 print(f"The binary search happened in {binary_time[1]:.6f} seconds.")
+
+################################################################################
+
+def bubble_sort(the_list2):
+
+# Outer loop to iterate through the list n times
+    for n in range(len(the_list2) - 1, 0, -1):
+
+# Inner loop to compare adjacent elements
+        for i in range(n):
+            if the_list2[i] > the_list2[i + 1]:
+
+# Swap elements if they are in the wrong order
+                the_list2[i], the_list2[i + 1] = the_list2[i + 1], the_list2[i]
+                swapped = True
+        if not swapped:
+            break
+    return the_list2
+
+
+# Sample list to be sorted
+the_list2 = [145, 892, 67, 431, 78, 999, 236, 12, 543, 234, 876, 450, 301, 789, 645]
+print(f"The unsorted list is: {the_list2}")
+sorted_bubble = bubble_sort(the_list2)
+
+print(f"The sorted list using bubble sort is: {sorted_bubble}")
+
+
+
