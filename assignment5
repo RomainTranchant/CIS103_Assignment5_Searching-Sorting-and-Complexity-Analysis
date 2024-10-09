@@ -1,114 +1,293 @@
 import time
 
-def linear_search(the_list, target):
-    for index, value in enumerate(the_list):
-        if value == target:
-            return index
+
+
+def linearsearch(lyst, target):
+# """Returns the position of the target item if found,
+# or -1 otherwise."""
+    position = 0
+    while position < len(lyst):
+        if target == lyst[position]:
+            return position
+        position += 1
     return -1
 
-def binary_search(the_list, target):
+def binarySearch(lyst, target):
     left = 0
-    right = len(the_list) -1
+    right = len(lyst) - 1
     while left <= right:
-        middle = (left + right) // 2
-        match = the_list[middle]
-
-        if target == match:
-            return middle
-        elif target < match:
-            right = middle - 1
+        midpoint = (left + right) // 2
+        if target == lyst[midpoint]:
+            return midpoint
+        elif target < lyst[midpoint]:
+                right = midpoint - 1
         else:
-            left = middle + 1
-    return -1
+            left = midpoint + 1
+        return -1
 
 
-def linear_measure_time(linear_search, the_list, target):
-    start_time = time.time()
-    time_result = linear_search(the_list, target)
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    return time_result, elapsed_time
-
-def binary_measure_time(binary_search, the_list, target):
-    start_time = time.time()
-    time_result = binary_search(the_list, target)
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    return time_result, elapsed_time
+target = 999
+lyst = range(1000)
+start_time = time.time()
+result = linearsearch(lyst, target)
+end_time = time.time()
+elapsed = end_time - start_time
+print(f"Linear search of {target} in {len(lyst)} lasted {elapsed:.9f} seconds.")
 
 
-
-
-
-the_list = list(range(100000000))
-target = 9850000
-print(f"The list is {len(the_list)} and the target is {target}")
-linear_result  = linear_search(the_list, target)
-if linear_result != -1:
-    print(f"Linear search: The index of {target} is: {linear_result}")
-else:
-    print(f"Linear search: The index of {target} is not in the list")
-
-binary_result = binary_search(the_list, target)
-if binary_result != -1:
-    print(f"Binary search: The index of {target} is: {binary_result}")
-else:
-    print(f"Binary search: The index of {target} is not in the list")
-
-linear_time = linear_measure_time(linear_search, the_list, target)
-print(f"The linear search happened in {linear_time[1]:.6f} seconds.")
-
-binary_time = binary_measure_time(binary_search, the_list, target)
-print(f"The binary search happened in {binary_time[1]:.6f} seconds.")
-
-
-the_list = list(range(10000000))
-target = 996300
-print(f"The list is {len(the_list)} and the target is {target}")
-
-linear_result  = linear_search(the_list, target)
-if linear_result != -1:
-    print(f"Linear search: The index of {target} is: {linear_result}")
-else:
-    print(f"Linear search: The index of {target} is not in the list")
-
-
-binary_result = binary_search(the_list, target)
-if binary_result != -1:
-    print(f"Binary search: The index of {target} is: {binary_result}")
-else:
-    print(f"Binary search: The index of {target} is not in the list")
-
-linear_time = linear_measure_time(linear_search, the_list, target)
-print(f"The linear search happened in {linear_time[1]:.6f} seconds.")
-
-binary_time = binary_measure_time(binary_search, the_list, target)
-print(f"The binary search happened in {binary_time[1]:.6f} seconds.")
+start_time = time.time()
+result = binarySearch(lyst, target)
+end_time = time.time()
+elapsed_binary = end_time - start_time
+print(f"Binary search of {target} in {len(lyst)} lasted {elapsed_binary:.9f} seconds.")
 
 
 
 
-the_list = list(range(100000))
-target = 99568
-
-print(f"The list is {len(the_list)} and the target is {target}")
-
-linear_result  = linear_search(the_list, target)
-if linear_result != -1:
-    print(f"Linear search: The index of {target} is: {linear_result}")
-else:
-    print(f"Linear search: The index of {target} is not in the list")
+target = 9999
+lyst = range(10000)
+start_time = time.time()
+result = linearsearch(lyst, target)
+end_time = time.time()
+elapsed = end_time - start_time
+print(f"Linear search of {target} in {len(lyst)} lasted {elapsed:.9f} seconds.")
 
 
-binary_result = binary_search(the_list, target)
-if binary_result != -1:
-    print(f"Binary search: The index of {target} is: {binary_result}")
-else:
-    print(f"Binary search: The index of {target} is not in the list")
+start_time = time.time()
+result = binarySearch(lyst, target)
+end_time = time.time()
+elapsed_binary = end_time - start_time
+print(f"Binary search of {target} in {len(lyst)} lasted {elapsed_binary:.9f} seconds.")
 
-linear_time = linear_measure_time(linear_search, the_list, target)
-print(f"The linear search happened in {linear_time[1]:.6f} seconds.")
 
-binary_time = binary_measure_time(binary_search, the_list, target)
-print(f"The binary search happened in {binary_time[1]:.6f} seconds.")
+target = 99999
+lyst = range(100000)
+start_time = time.time()
+result = linearsearch(lyst, target)
+end_time = time.time()
+elapsed = end_time - start_time
+print(f"Linear search of {target} in {len(lyst)} lasted {elapsed:.9f} seconds.")
 
+
+start_time = time.time()
+result = binarySearch(lyst, target)
+end_time = time.time()
+elapsed_binary = end_time - start_time
+print(f"Binary search of {target} in {len(lyst)} lasted {elapsed_binary:.9f} seconds.")
+
+
+
+
+##################################################################################
+
+
+import time
+arr = list(range(1000))[::-1]
+
+print(arr)
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+starttime = time.time()
+bubble_sort(arr)
+endtime = time.time()
+elapsedtime = endtime - starttime
+print(arr)
+print(f"Bubble sort in {elapsedtime:.6f} seconds")
+
+if __name__ == "main":
+    bubble_sort(arr)
+
+
+
+
+
+###################################################################################
+
+
+
+import time
+
+def bubble_sort(the_list2):
+    # Outer loop to iterate through the list n times
+    for n in range(len(the_list2) - 1, 0, -1):
+        swapped = False  # Initialize swapped for each pass
+        # Inner loop to compare adjacent elements
+        for i in range(n):
+            if the_list2[i] > the_list2[i + 1]:
+                # Swap elements if they are in the wrong order
+                the_list2[i], the_list2[i + 1] = the_list2[i + 1], the_list2[i]
+                swapped = True
+        if not swapped:
+            break
+    return the_list2
+
+def merge(the_list2, copyBuffer, low, middle, high):
+    # Initialize i1 and i2 to the first items in each sublist
+    i1 = low
+    i2 = middle + 1
+    # Interleave items from the sublists into the copyBuffer
+    for i in range(low, high + 1):
+        if i1 > middle:  # First sublist exhausted
+            copyBuffer[i] = the_list2[i2]
+            i2 += 1
+        elif i2 > high:  # Second sublist exhausted
+            copyBuffer[i] = the_list2[i1]
+            i1 += 1
+        elif the_list2[i1] < the_list2[i2]:  # Compare items
+            copyBuffer[i] = the_list2[i1]
+            i1 += 1
+        else:
+            copyBuffer[i] = the_list2[i2]
+            i2 += 1
+    # Copy sorted items back to proper position in the original list
+    for i in range(low, high + 1):
+        the_list2[i] = copyBuffer[i]
+
+def merge_sort(the_list2, copyBuffer, low, high):
+    if low < high:
+        middle = (low + high) // 2
+        merge_sort(the_list2, copyBuffer, low, middle)  # Sort left half
+        merge_sort(the_list2, copyBuffer, middle + 1, high)  # Sort right half
+        merge(the_list2, copyBuffer, low, middle, high)  # Merge sorted halves
+
+
+# Sample list to be sorted using bubble sort
+the_list2 = list(range(1000)[::-1])
+print(f"The unsorted list has {len(the_list2)} items")
+start_test = time.time()
+sorted_bubble = bubble_sort(the_list2)
+end_time = time.time()
+elapsed_time = end_time - start_test
+
+# Print summary for bubble sort
+print(f"Bubble sort lasted {elapsed_time:.9f} seconds.")
+
+# Sample list to be sorted using merge sort
+the_list2 = list(range(1000)[::-1])
+copyBuffer = [0] * len(the_list2)  # Create a buffer for merging
+start_test = time.time()
+merge_sort(the_list2, copyBuffer, 0, len(the_list2) - 1)
+end_time = time.time()
+elapsed_time = end_time - start_test
+
+# Print summary for merge sort
+print(f"Merge sort lasted {elapsed_time:.9f} seconds.")
+
+
+
+# Sample list to be sorted using bubble sort
+the_list2 = list(range(10000)[::-1])
+print(f"The unsorted list has {len(the_list2)} items")
+start_test = time.time()
+sorted_bubble = bubble_sort(the_list2)
+end_time = time.time()
+elapsed_time = end_time - start_test
+
+# Print summary for bubble sort
+print(f"Bubble sort lasted {elapsed_time:.9f} seconds.")
+
+# Sample list to be sorted using merge sort
+the_list2 = list(range(10000)[::-1])
+copyBuffer = [0] * len(the_list2)  # Create a buffer for merging
+start_test = time.time()
+merge_sort(the_list2, copyBuffer, 0, len(the_list2) - 1)
+end_time = time.time()
+elapsed_time = end_time - start_test
+
+# Print summary for merge sort
+print(f"Merge sort lasted {elapsed_time:.9f} seconds.")
+
+
+
+
+
+# Sample list to be sorted using bubble sort
+the_list2 = list(range(100000)[::-1])
+print(f"The unsorted list has {len(the_list2)} items")
+start_test = time.time()
+sorted_bubble = bubble_sort(the_list2)
+end_time = time.time()
+elapsed_time = end_time - start_test
+
+# Print summary for bubble sort
+print(f"Bubble sort lasted {elapsed_time:.9f} seconds.")
+
+# Sample list to be sorted using merge sort
+the_list2 = list(range(100000)[::-1])
+copyBuffer = [0] * len(the_list2)  # Create a buffer for merging
+start_test = time.time()
+merge_sort(the_list2, copyBuffer, 0, len(the_list2) - 1)
+end_time = time.time()
+elapsed_time = end_time - start_test
+
+# Print summary for merge sort
+print(f"Merge sort lasted {elapsed_time:.9f} seconds.")
+
+
+import time
+arr = list(range(1000))[::-1]
+def selection_sort(arr):
+    for i in range(len(arr)):
+        min_idx = i
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+                arr[i], arr[min_idx] = arr[min_idx], arr[i]
+print(arr)
+starttime = time.time()
+selection_sort(arr)
+endtime = time.time()
+elapsedtime = endtime - starttime
+print(arr)
+print(f"Selection sort in {elapsedtime:.6f} seconds")
+if __name__ == "main":
+    selection_sort(arr)
+######################################################################################
+
+
+import time
+arr = list(range(1000))[::-1]
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i-1
+        while j >= 0 and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+            arr[j+1] = key
+print(arr)
+starttime = time.time()
+insertion_sort(arr)
+endtime = time.time()
+elapsedtime = endtime - starttime
+print(arr)
+print(f"Insertion sort in {elapsedtime:.6f} seconds")
+if __name__ == "main":
+    insertion_sort(arr)
+
+#################################################################################################
+
+
+
+import time
+arr = list(range(1000))[::-1]
+def selection_sort(arr):
+    for i in range(len(arr)):
+        min_idx = i
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+                arr[i], arr[min_idx] = arr[min_idx], arr[i]
+print(arr)
+starttime = time.time()
+selection_sort(arr)
+endtime = time.time()
+elapsedtime = endtime - starttime
+print(arr)
+print(f"Selection sort in {elapsedtime:.6f} seconds")
+if __name__ == "main":
+    selection_sort(arr)
